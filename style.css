@@ -1,22 +1,12 @@
-/*========== GERAL =======================*/
-
+/*=== GERAL =================================*/
 * {
-  /* seletor universal */
+  margin: 0;
   padding: 0;
-  margin: 0; /* seta as margens como nulas */
-  box-sizing: border-box; /* faz com que a caixa  conte a partir das bordas, 
-                          incluindo, também, o padding, que eh o espaço vazio 
-                          entre o texto e a borda, ou seja, o preenchimento 
-                          interno da caixa, e serve para caso alguem esteja 
-                          no celular e resolva deslizar para os lados*/
+  box-sizing: border-box;
 }
 
 :root {
-  /* raiz de todo o documento */
-
-  /* declaracao das variaveis */
-  --hue: 170;
-
+  --hue: 190;
   --primary-color: hsl(var(--hue), 100%, 26%);
   --headline: hsl(210, 11%, 15%);
   --paragraph: hsl(210, 9%, 31%);
@@ -28,14 +18,13 @@
 
   --bg-light: hsl(180, 14%, 97%);
 
-  /* eh preciso para definir o tamanho dos objetos
-     em "rem", que eh a conversao 10px = 1rem */
   font-size: 62.5%; /* 1rem = 10px */
-  /* 100% = 16px por default nos navegadore */
+
   --nav-height: 7.2rem;
 }
 
 html {
+  /* chrome://flags/#smooth-scrolling */
   scroll-behavior: smooth;
 }
 
@@ -46,29 +35,20 @@ body {
 }
 
 body {
-  /* faz a mudanca em todo o body */
   font-family: 'DM Sans';
-  font-size: 1.6rem; /* todo o body iniciarah com 16px */
+  font-size: 1.6rem;
 
-  text-align: center; /* o texto de todo o body ficarah alinhado ao cento */
+  text-align: center;
+
   overflow: overlay;
 
   background-color: var(--bg-light);
 }
 
 .wrapper {
-  /* classe para determinar a largura e as margens no codigo html */
-  width: min(
-    50rem,
-    100%
-  ); /* 375px de tamnho para que o conteudo seja dispoto */
-
-  margin-right: auto;
-  margin-left: auto; /* distancia entre a borda do elemento, neste caso eh o 
-                        conteudo de 375px, e a borda do proximo elemento, que 
-                        para o header eh o limite da pagina do aparelho utilizado */
-
-  padding-inline: 2.4rem; /* primeiro para cima e baixo e depois para as laterais */
+  width: min(50rem, 100%);
+  margin-inline: auto;
+  padding-inline: 2.4rem;
 }
 
 ul {
@@ -88,11 +68,11 @@ section header h4 {
   font-weight: 700;
   line-height: 150%;
   letter-spacing: 0.08rem;
-  color: var(--primary-color); /* eh assim que se usa uma variavel */
+  color: var(--primary-color);
 
   text-transform: uppercase;
 
-  margin-bottom: 1.6rem; /* margem entre o h4 e elemento abaixo dele */
+  margin-bottom: 1.6rem;
 }
 
 section header h2 {
@@ -105,7 +85,7 @@ section header h2 {
 section header h1 {
   font-size: 3.4rem;
   color: var(--headline);
-  line-height: 130%; /* espacamento entre linhas */
+  line-height: 130%;
 
   margin-bottom: 2.4rem;
 }
@@ -119,30 +99,25 @@ section .content p {
 }
 
 .button {
-  background-color: var(--primary-color);
+  background: var(--primary-color);
 
   border: none;
-  border-radius: 4rem; /* raio das arestas */
+  border-radius: 4rem;
 
   margin-bottom: 6rem;
 
-  padding: 1.6rem 3.2rem; /* cime e baixo depois os lados */
-  width: fit-content; /* largura adaptada ao conteudo */
+  padding: 1.6rem 3.2rem;
+  width: fit-content;
 
-  color: white; /* cor das letras */
-  text-transform: uppercase; /* todas maiusculas */
+  color: white;
   font-size: 1.4rem;
   font-weight: 700;
+  text-transform: uppercase;
 
-  display: flex; /* habilita a edicao entre os elementos da propria caixa e deixa os elementos um ao lado do outro*/
-  /* ateh entao estavamos editando como uma caixa se comporta em relacao a outra*/
-  /* existe o comando display: block, que deixa apenas o 
-                    elemento em questao na linha e faz com que a margem do elemento com o da prox linha fique nula (imagem) */
-  align-items: center; /* alinha horizontalmente */
-  justify-content: center; /* alinha verticalmente */
-  gap: 1.6rem; /* espaco entre os elementos */
-
-  /* preenchimento automatico ao lado esquerdo e direito do botao */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
 
   text-decoration: none;
 
@@ -170,8 +145,8 @@ section .content p {
   fill: var(--primary-color);
 }
 
-#navigation button.open-menu path,
-#contact ul li path {
+button.open-menu path[stroke*='#00856F'],
+#contact li path {
   stroke: var(--primary-color);
 }
 
@@ -180,12 +155,11 @@ body.menu-expanded #navigation .logo path,
   fill: white;
 }
 
-#navigation.scroll button.open-menu path {
+#navigation.scroll button.open-menu path[stroke*='#00856F'] {
   stroke: white;
 }
 
-/*========== NAVIGATION =======================*/
-
+/*=== NAVIGATION =================================*/
 nav {
   display: flex;
 
@@ -201,7 +175,7 @@ nav {
 nav .wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* descobre o espaco entre os elementos para que eles fiquem o maximo espacado entre eles */
+  justify-content: space-between;
 }
 
 nav.scroll {
@@ -219,14 +193,13 @@ nav .close-menu {
   position: fixed;
 }
 
-/*========== MENU-EXPANDED =======================*/
-
+/*=== MENU-EXPANDED =================================*/
 body.menu-expanded {
   overflow: hidden;
 }
 
 body.menu-expanded > :not(nav) {
-  display: none;
+  visibility: hidden;
 }
 
 .menu,
@@ -252,12 +225,12 @@ body.menu-expanded .menu {
   background: var(--primary-color);
 
   width: 100vw;
-  height: 100vw;
+  height: 100vh;
 
   padding-top: var(--nav-height);
 
-  transition: transform 400ms;
-  transform: translateY(0%);
+  transition: transform 300ms;
+  transform: translateY(0);
 }
 
 .menu ul:nth-child(1) {
@@ -289,7 +262,7 @@ body.menu-expanded .menu {
   color: var(--primary-color);
 
   display: inline-block;
-  padding: 1.6rem 3.2rem;
+  padding: 16px 32px;
 
   margin-top: 4.8rem;
   margin-bottom: 8rem;
@@ -316,26 +289,23 @@ body.menu-expanded button path {
   stroke: white;
 }
 
-/*========== HEADER =======================*/
-
+/*=== #HOME =================================*/
 #home {
-  /* cabecalho eh usado para definir um tamnho fixo para o conteudo*/
-  padding-bottom: 0;
+  padding-block: 0;
   padding-top: calc(4.1rem + var(--nav-height));
 }
 
 #home::before {
-  /* pseudo-classe. Before pq eh antes do conteudo */
-  content: ''; /* conteudo nulo */
-  width: 100%; /* a largura eh toda a viewport width, ou seja, toda a página de exibicao*/
-  height: calc(73% + var(--nav-height));
+  content: '';
+  width: 100%;
+  height: calc(76% + var(--nav-height));
   background-color: var(--brand-light);
-  display: block; /* um elemento precisa ter display, o block aceita altura e largura */
+  display: block;
 
-  position: absolute; /* faz com que o conteudo fique atras do objeto e destrava para setar as dimensoes do objeto */
-  top: 0; /* seta o topo do objeto para iniciar no topo da tela de exibicao */
-  left: 0; /* seta parte esquerda do objeto para iniciar na esquerda da tela de exibicao */
-  z-index: -1; /* faz com que o objeto agora fique atras do conteudo, consertando o que position: absolute fez */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 #home .button {
@@ -345,8 +315,9 @@ body.menu-expanded button path {
 #home p {
   font-size: 1.8rem;
   line-height: 150%;
-  font-weight: 400; /* peso, ou seja, a grossura dos caracteres da fonte */
+  font-weight: 400;
   color: var(--paragraph);
+
   margin-bottom: 3.2rem;
 }
 
@@ -359,25 +330,16 @@ body.menu-expanded button path {
 
 #home .stats {
   width: 100%;
-
-  padding-block: 4rem; /* padding eh o espaco entre o conteudo e a borda do proprio 
-                          elemento */
-  /* jah o block serve para delimitar em cima e embaixo, 
-                          dispensando duas linhas de codigo contendo 
-                          padding-top e pedding-bottom */
-  margin-inline: auto; /* margin eh o espaco entre a margem de um elemento e margem 
-                          do proximo elemento. Inline auto representa a centralizacao 
-                          automatica na linha */
+  padding-block: 4rem;
+  margin-inline: auto;
 
   background-color: var(--brand-beige);
   border: 1px solid var(--brand-light);
   border-radius: 0.6rem;
 
-  display: flex; /* serve para colocar as caixas uma ao lado da outra (em linha) */
-  flex-direction: column; /* muda o alinhamento em linha para o alinhamento em
-                          coluna*/
-  justify-content: center; /* poe todos os itens no meio */
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 6rem;
 }
 
@@ -389,15 +351,14 @@ body.menu-expanded button path {
   margin-bottom: 0.4rem;
 }
 
-.stat p {
+#home .stat p {
   margin: 0;
   color: var(--primary-color);
   font-size: 1.6rem;
   line-height: 150%;
 }
 
-/*========== SERVICES =======================*/
-
+/*=== SERVICES =================================*/
 #services header h2 {
   margin-bottom: 6rem;
 }
@@ -413,6 +374,7 @@ body.menu-expanded button path {
   text-align: left;
 
   background: white;
+
   border: 1px solid var(--brand-light);
   border-radius: 0.6rem;
 }
@@ -421,8 +383,7 @@ body.menu-expanded button path {
   margin-block: 1.6rem;
 }
 
-/*========== ABOUT =======================*/
-
+/*=== ABOUT =================================*/
 #about {
   text-align: left;
   background-color: var(--brand-beige);
@@ -437,8 +398,7 @@ body.menu-expanded button path {
   margin-bottom: 6rem;
 }
 
-/*========== CONTACT =======================*/
-
+/*=== CONTACT =================================*/
 #contact {
   text-align: left;
 }
@@ -450,7 +410,7 @@ body.menu-expanded button path {
 #contact ul {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem; /* soh pode ser usado se colocar display */
+  gap: 1.6rem;
 
   margin-bottom: 3.2rem;
 }
@@ -461,8 +421,7 @@ body.menu-expanded button path {
   gap: 0.8rem;
 }
 
-/*========== FOOTER =======================*/
-
+/*=== FOOTER =================================*/
 footer {
   background-color: var(--primary-color);
   padding-block: 6rem;
@@ -497,7 +456,7 @@ footer .social-links {
   justify-content: flex-start;
 }
 
-/*========== BACK TO TOP =======================*/
+/* BACK TO TOP */
 #backToTopButton {
   position: fixed;
   bottom: 1rem;
@@ -516,9 +475,9 @@ footer .social-links {
   transform: translateY(0);
 }
 
-/*========== RESPONSIVO =======================*/
+/*=== RESPONSIVO =================================*/
 @media (min-width: 1024px) {
-  /*========== GERAL   =======================*/
+  /*=== GERAL =================================*/
   body {
     overflow: auto;
   }
@@ -545,12 +504,12 @@ footer .social-links {
     line-height: 5.2rem;
   }
 
-  /*========== NAVIGATION =======================*/
+  /*=== NAVIGATION =================================*/
   /* reset */
   nav#navigation .wrapper * {
     margin: 0;
     padding: 0;
-    visibility: initial; /* valor inicial antes do css */
+    visibility: initial;
     display: initial;
     opacity: initial;
     flex-direction: initial;
@@ -620,7 +579,7 @@ footer .social-links {
   }
 
   nav#navigation .menu li a {
-    transition: opacity 400ms;
+    transition: opacity 0.4s;
   }
 
   nav#navigation .menu li a.active,
@@ -635,13 +594,13 @@ footer .social-links {
     height: 2px;
     background-color: var(--primary-color);
 
-    position: relative; /* libera a propriedade 'bottom' */
-    bottom: -1.9rem;
-    right: 0.8rem;
+    position: relative;
+    bottom: -2rem;
+    left: -0.5rem;
 
     display: block;
 
-    transition: width 200ms;
+    transition: width 0.2s;
   }
 
   nav#navigation.scroll .menu li a::after {
@@ -661,14 +620,14 @@ footer .social-links {
 
   nav#navigation.scroll .menu a.button.active,
   nav#navigation.scroll .menu a.button:hover {
-    background-color: white;
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    filter: brightness(1.3);
     border: none;
   }
 
-  /*========== HOME =======================*/
+  /*=== HOME =================================*/
   #home::before {
-    height: calc(94% - var(--nav-height));
+    height: calc(96% - var(--nav-height));
   }
 
   #home {
@@ -676,10 +635,10 @@ footer .social-links {
   }
 
   #home .wrapper {
-    grid-template-columns: 60.5rem 1fr; /* primeira coluna do grid possui 605px, jah a outra fica com todo o resto, por isso '1fr' */
+    grid-template-columns: 60.5rem 1fr;
     grid-template-areas:
       'A B'
-      'C C'; /* matriz contendo o que representa A, B e C */
+      'C C';
   }
 
   #home .col-a {
@@ -704,7 +663,6 @@ footer .social-links {
   }
 
   #home .stats .stat + .stat {
-    /* pega um stat que possui antrios a ele um stat */
     border-left: 1px solid var(--primary-color);
   }
 
@@ -720,62 +678,54 @@ footer .social-links {
     width: 42rem;
   }
 
-  /*========== SERVICES =======================*/
+  /*=== SERVICES =================================*/
   #services h2 {
-    width: 49.7rem;
+    width: 47rem;
     margin-inline: auto;
   }
 
   #services .cards {
     flex-direction: row;
-    flex-wrap: wrap; /* tente encaixah-los respeitando o tamanho de cada um */
+    flex-wrap: wrap;
     gap: 4rem;
   }
 
   #services .card {
     width: 30%;
-    flex-grow: 1; /* faz com que o conteudo cresca o suficiente para preencher o espaco restante */
+    flex-grow: 1;
   }
 
-  /*========== ABOUT =======================*/
+  /*=== ABOUT =================================*/
   #about .wrapper {
-    grid-template-columns: 48rem 1fr; /* 48rem garante que a foto tem 480px de largura */
+    grid-template-columns: 48rem 1fr;
     grid-template-areas: 'B A';
     gap: 6.7rem;
   }
 
   #about .col-a {
-    align-self: center; /* alinha o conteúdo do grid na parte central dele */
+    align-self: center;
   }
 
   #about .content p {
     margin-bottom: 0;
   }
 
-  /*========== CONTACT =======================*/
+  /*=== CONTACT =================================*/
+
   #contact .wrapper {
     grid-template-columns: 1fr 57.5rem;
     grid-template-areas: 'A B';
-    gap: 141;
-  }
-
-  #contact .col-a {
-    align-self: center;
-  }
-
-  #contact .button {
-    margin-bottom: 0;
   }
 
   #contact h2 {
     width: 40.4rem;
   }
 
-  /*========== FOOTER =======================*/
+  /*=== FOOTER =================================*/
   footer {
     padding-block: 8rem;
   }
-
+  
   footer .wrapper {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 'A B';
@@ -785,12 +735,13 @@ footer .social-links {
     align-self: center;
   }
 
+
   footer .col-b {
     align-self: center;
     justify-self: flex-end;
   }
 
   footer p {
-    margin-bottom: 0;
+    margin-bottom: 0
   }
 }
